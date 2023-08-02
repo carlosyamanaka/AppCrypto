@@ -1,6 +1,6 @@
 const { createApp } = Vue
 
-const baseUrl = "http://localhost:8080/coin/"
+const baseUrl = "https://api.coincap.io/v2/assets"
 
 const mainContainer = {
     data() {
@@ -21,17 +21,34 @@ const mainContainer = {
     mounted(){
         this.showAllCoins()
     },
-    methods:{
-        showAllCoins(){
-            this.coins = []
+
+    methods: {
+
+        formatDecimal(value) {
+            if (isNaN(value)) {
+                return 0;
+            }
+            return parseFloat(value).toFixed(4);
+        },
+
+        showAllCoins() {
+            this.coins = [];
             axios
                 .get(baseUrl)
                 .then(response => {
-                    response.data.forEach(item => {
-                        this.coins.push(item)
-                    })
+                    console.log(response.data);
+                    const coinsData = response.data.data;
+                    for (const key in coinsData) {
+                        if (coinsData.hasOwnProperty(key)) {
+                            const item = coinsData[key];
+                            console.log(item);
+                            this.coins.push(item);
+                        }
+                    }
                 })
         },
+
+
         showTransactions(name){
             this.transactions = {
                 coinName: name,
