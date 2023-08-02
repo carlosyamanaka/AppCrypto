@@ -8,8 +8,10 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Coin {
 
+    @Id
     private Long id;
     private Long rank;
     private String symbol;
@@ -23,4 +25,11 @@ public class Coin {
     private BigDecimal vwap24Hr;
     private String explorer;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

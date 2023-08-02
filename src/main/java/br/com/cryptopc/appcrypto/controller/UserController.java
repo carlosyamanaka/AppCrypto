@@ -1,6 +1,6 @@
 package br.com.cryptopc.appcrypto.controller;
 
-import br.com.cryptopc.appcrypto.entity.User;
+import br.com.cryptopc.appcrypto.entity.UserI;
 import br.com.cryptopc.appcrypto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +23,9 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity post(@RequestBody User user){
+    public ResponseEntity post(@RequestBody UserI userI){
         try{
-            return new ResponseEntity<>(userRepository.save(user), HttpStatus.CREATED);
+            return new ResponseEntity<>(userRepository.save(userI), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -35,7 +35,7 @@ public class UserController {
     public ResponseEntity delete(@PathVariable Long id_user){
         try{
             userRepository.deleteById(id_user);
-            return new ResponseEntity<>("User deleted!", HttpStatus.OK);
+            return new ResponseEntity<>("UserI deleted!", HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
