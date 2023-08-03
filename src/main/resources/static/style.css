@@ -1,23 +1,29 @@
-html{
-    font-family: 'Open Sans', sans-serif;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 
+}
 
 body{
-    width: 100%;
-    height: 100vh;
-    background-image: url(assets/bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    display: flex;  justify-content: center;
+    align-items: center;
+;    min-height: 110vh;
+    background: seagreen;
 }
 
-.cont{
+.wrapper {
+    width:420px;
+    background: purple;
+    color: #fff;
+}
+
+ont{
     width: auto;
     height: auto;
     padding: 0;
 }
-
-
 
 .glassmorphism {
     background: rgba(255, 255, 255, 0.25);
@@ -35,7 +41,8 @@ body{
   
 
 
-.cor{animation:color-change-5x 15s linear infinite alternate both}
+.cor{animation:color-change-5x 15s linear iinite alternate both}
+
 .br{animation:br 2s linear infinite alternate both}
 
 
@@ -73,30 +80,3 @@ body{
     }
 }
 
-
-
-
-
-
-
-label{
-    transform: translate(.2em, -1.7em);
-}
-
-#Password:focus + .labelPassword {
-    animation: slide-top 0.3s forwards;
-}
-
-#Mail:focus + .labelEmail{
-    animation: slide-top 0.3s forwards;
-}
-
-
-input{
-    border: 0;
-    transition: all .2;
-}
-input:focus{
-    outline: none;
-    border-bottom: 1px solid #333;
-}

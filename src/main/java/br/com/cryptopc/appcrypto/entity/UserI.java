@@ -21,7 +21,7 @@ public class UserI {
     private String pass;
 
     @ElementCollection
-    private List <String> followedCrypto;
+    private List<String> followedCrypto;
 
     public void setId(Long id) {
         this.id = id;
