@@ -27,34 +27,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
     
 </head>
-<body>
-    <div id="app" class="container">
-        <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
-            <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html">
-                <img style="filter: drop-shadow(-3px 3px 3px #000);" class="logoPixel" src="assets/pixelArtLogo.png" alt="CriptoWeb">
-                <p style="font-family: 'Exo 2', sans-serif; transform: translateY(-2px); filter: drop-shadow(-1px 5px 3px #000);" class="m-0">CryptoWeb</p>
-            </a>
-            <a class="profileBtn d-block align-items-center" href="perfil.html">
-                <i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i>
-            </a>
-        </header>
-        
-        <div class="traded text-center text-white mb-5">
-            <h2 class="fw-bold">Cryptocoins List</h2>
-        </div>
-        <div style="backdrop-filter: blur(4px);" class="card container w-100 glass p-0 ">
-            <div class="card-body container p-0">
-                <table class="table table-hover container table-striped-columns m-0">
+    <body class="indexeperfil">
+        <div id="app" class="container">
+            <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
+                <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html">
+                    <img style="filter: drop-shadow(-3px 3px 3px #000);" class="logoPixel" src="assets/pixelArtLogo.png" alt="CriptoWeb">
+                    <p style="font-family: 'Exo 2', sans-serif; transform: translateY(-2px); filter: drop-shadow(-1px 5px 3px #000);" class="m-0">CryptoWeb</p>
+                </a>
+                <a class="profileBtn d-block align-items-center" href="perfil.html">
+                    <i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i>
+                </a>
+            </header>
+            
+            <div class="traded text-center text-white mb-5">
+                <h2 class="fw-bold">Cryptocoins List</h2>
+            </div>
+            <div style="backdrop-filter: blur(4px);" class="card container glass p-0">
+                <table class="table table-hover table-active container table-striped-columns">
                     <thead class="bg-transparent">
-                    <tr>
-                        <th>Rank</th>
-                        <th style="width: 14%;">Name</th>
+                    <tr class="text-justify">
+                        <th >Rank</th>
+                        <th style="width: auto;">Name</th>
                         <th>Symbol</th>
-                        <th>Supply</th>
-                        <th>Max Supply</th>
+                        <th style="width: 14%;">Supply</th>
+                        <th style="width: 14%;">Max Supply</th>
                         <th>24hr Volume USD</th>
                         <th>Price</th>
-                        <th></th>
+                        <th class=""></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,30 +61,29 @@
                         <td style="text-align: center; padding-right: 5px;">{{ coin.rank }}</td>
                         <td>{{ coin.name }}</td>
                         <td>{{ coin.symbol }}</td>
-                        <td>{{ formatDecimal(coin.supply) }}</td>
-                        <td>{{ formatDecimal(coin.maxSupply) }}</td>
+                        <td style="width: 14%;">{{ formatDecimal(coin.supply) }}</td>
+                        <td style="width: 14%;">{{ formatDecimal(coin.maxSupply) }}</td>
                         <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
                         <td>{{ formatDecimal(coin.priceUsd) }}</td>
-                        <td><button style="border: 0; background: rgb(255 255 255/.4)" class="w-100 h-100">+</button></td>
+                        <td class="td-button p-0"><button class="full-width-button">+</button></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            
+            <a href="login.html">Clique aqui para ir para a página de Login</a>
+            <br>
+            <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
+            <br>
+            <a href="perfil.html">Clique aqui para ir para a página Do Perfil</a>
         </div>
-        
-        <a href="login.html">Clique aqui para ir para a página de Login</a>
-        <br>
-        <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
-        <br>
-        <a href="perfil.html">Clique aqui para ir para a página Do Perfil</a>
-    </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="vueApp.js"></script>
-</body>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="vueApp.js"></script>
+    </body>
 </html>

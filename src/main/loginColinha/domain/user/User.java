@@ -1,8 +1,9 @@
-package br.com.cryptopc.appcrypto.entity;
+package com.example.auth.domain.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,50 +12,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-//Getters e setters
-//Construtor comum
-//construtor com todos os atributos
-@Data
+@Table(name = "users")
+@Entity(name = "users")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class UserI implements UserDetails{
-
+@EqualsAndHashCode(of = "id")
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length = 70)
-    private String email;
-    @Column(length = 70)
-    private String pass;
-    @Column(length = 70)
-    private String role;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    private String login;
+    private String password;
+    private UserRole role;
 
-    //@JoinColumn é um column pra chave estrangeira
-    //Muitas moedas se ligam a um usuario
-    @ManyToOne
-    private Coin coin;
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+    public User(String login, String password, UserRole role){
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return pass;
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return login;
     }
 
     @Override

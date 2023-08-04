@@ -1,21 +1,18 @@
 const { createApp } = Vue
 
 const baseUrl = "https://api.coincap.io/v2/assets"
+const userUrl = "http://localhost:8080/user/"
 
 const mainContainer = {
+    
     data() {
         return {
             coins:[],
-            canSeeTranscations: false,
-            formCoin: {
-                isNew: true,
+            DataUserAddedCoin: {
                 name: '',
-                price: '',
-                quantity: '',
-                title: 'Cadastrar nova transação',
-                button: 'Cadastrar'
+                pass:'',
+                coin:'',
             },
-            transactions: []
         }
     },
     mounted(){
@@ -25,146 +22,37 @@ const mainContainer = {
     methods: {
 
         formatDecimal(value) {
-            if (isNaN(value)) {
-                return 0;
+            if (value === null) {
+                return "Not defined";
             }
             return parseFloat(value).toFixed(4);
         },
 
         showAllCoins() {
-            this.coins = [];
+            this.coins = []; // Limpa o array coins, para garantir que ele esteja vazio antes de preenchê-lo novamente.
             axios
-                .get(baseUrl)
-                .then(response => {
-                    console.log(response.data);
-                    const coinsData = response.data.data;
-                    for (const key in coinsData) {
-                        if (coinsData.hasOwnProperty(key)) {
-                            const item = coinsData[key];
-                            console.log(item);
-                            this.coins.push(item);
+                .get(baseUrl) // Faz uma requisição GET para a API utilizando o Axios.
+                .then(response => { // Quando a resposta da API é recebida, executa a função de callback.
+                    const coinsData = response.data.data; // Extrai os dados específicos das moedas da resposta da API.
+                    for (const key in coinsData) { // Itera sobre as propriedades do objeto coinsData.
+                        if (coinsData.hasOwnProperty(key)) { // Verifica se a propriedade pertence ao objeto coinsData (evita iteração em propriedades herdadas).
+                            const item = coinsData[key]; // Armazena os dados da moeda em uma variável item.
+                            this.coins.push(item); // Adiciona os dados da moeda ao array coins.
                         }
                     }
                 })
         },
-
-
-        showTransactions(name){
-            this.transactions = {
-                coinName: name,
-                data: []
-            }
-
-            this.canSeeTranscations = true
-
-            axios.get(baseUrl + name)
-                .then(response => {
-                    response.data.forEach(item => {
-                        this.transactions.data.push({
-                            id: item.id,
-                            name: item.name,
-                            price: item.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-                            quantity: item.quantity,
-                            datetime: this.formattedDate(item.dateTime)
-                        })
-                    })
+        
+        // Metodo para adicionar retornar e salvar a moeda escolhida pelo usuario para acompanhamento
+        addCoinToList(){
+            axios.post(userUrl, DataUserAddedCoin)
+                .then(function(response){
+                    toastr.sucess('Added!!');
                 })
-                .catch(function (error){
-                    console.log(error)
-                    toastr.error(error)
+                .catch(function(error){
+                    toastr.error('Error');
                 })
         },
-        saveCoin(){
-            this.formCoin.name = this.formCoin.name.toUpperCase()
-            this.formCoin.price =  this.formCoin.price.replace("R$", '')
-                .replace(',', '.').trim()
-
-            if(this.formCoin.name == '' || this.formCoin.price == '' || this.formCoin.quantity == '') {
-                toastr.error('Todos os campos são obrigatórios.', 'Formulário')
-                return
-            }
-
-            const self = this
-
-            if(this.formCoin.isNew) {
-                const coin = {
-                    name: this.formCoin.name,
-                    price: this.formCoin.price,
-                    quantity: this.formCoin.quantity
-                }
-
-                axios.post(baseUrl, coin)
-                    .then(function (response) {
-                        toastr.success('Nova transação cadastrada com sucesso!', 'Formulário')
-                    })
-                    .catch(function (error) {
-                        toastr.error('Não foi possível cadastrar uma nova transação.', 'Formulário')
-                    })
-                    .then(function () {
-                        self.showAllCoins()
-                        self.showTransactions(self.formCoin.name)
-                        self.cleanForm()
-                    })
-            } else {
-                const coin = {
-                    id: this.formCoin.id,
-                    name: this.formCoin.name,
-                    price: this.formCoin.price,
-                    quantity: this.formCoin.quantity
-                }
-
-                axios.put(baseUrl, coin)
-                    .then(function (response){
-                        toastr.success('Transação atualizada com sucesso!', 'Formulário')
-                    })
-                    .catch(function (error){
-                        toastr.error('Não foi possível atualizar a transação.' + error, 'Formulário')
-                    })
-                    .then(function () {
-                        self.showAllCoins()
-                        self.showTransactions(self.formCoin.name)
-                        self.cleanForm()
-                    })
-            }
-        },
-        removeTransaction(transaction){
-            const self = this
-
-            axios.delete(baseUrl + transaction.id)
-                .then(function (response) {
-                    toastr.success('Transação removida com sucesso!', 'Exclusão')
-                })
-                .catch(function (error){
-                    toastr.error('Não foi possível remover as transação.'+ error, 'Exclusão')
-                })
-                .then(function (){
-                    self.showAllCoins()
-                    self.showTransactions(transaction.name)
-                    self.cleanForm()
-                })
-        },
-        editTransaction(transaction){
-            this.formCoin = {
-                isNew: false,
-                id: transaction.id,
-                name: transaction.name.toUpperCase(),
-                price: transaction.price,
-                quantity: transaction.quantity,
-                title: 'Editar transação',
-                button: 'Atualizar'
-            }
-        },
-        cleanForm(){
-            this.formCoin.isNew = true
-            this.formCoin.name = ''
-            this.formCoin.price = ''
-            this.formCoin.quantity = ''
-            this.formCoin.title = 'Cadastrar nova transação'
-            this.formCoin.button = 'Cadastrar'
-        },
-        formattedDate(date){
-            return (new Date(date.split('T')[0])).toLocaleDateString("pt-br")
-        }
     }
 }
 
