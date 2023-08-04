@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap -->
+    
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- toast -->
+    <!-- Toast -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+
     <!-- fonte Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- CSS do Projeto -->
+    <link rel="stylesheet" href="style.css">    <!-- Icone -->
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+    
     <title>CriptoWeb | Register</title>
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100 flex-column">
-    <div class="container w-auto">
-        <form action="" class="form-control d-flex flex-column glassmorphism gap-2">
-            <h2 class="text-center">Register</h2>
-            <input type="email" name="email" id="Mail" placeholder="E-mail">
-            <input type="password" name="" id="pWord" placeholder="Password">
-            <input type="password" name="passwordR" id="pWordR" placeholder="Repeat the password">
-            <input type="button" class="btn hvoer" value="FODS?">
-        </form>    
-    </div>
-
-        <a href="login.html">Clique aqui para ir para a página de Login</a>
-        <br>
-        <a href="index.html">Clique aqui para ir para a página Inicial</a>
-        <br>
-        <a href="perfil.html">Clique aqui para ir para a página Do Perfil</a>
-
+    <body class="overflow-hidden">
+        <div class="wrapper">
+            <form action="login.html">
+                <h1>Create Account</h1>
+                <div class="input-box form-floating">
+                    <input class="form-control" type="email" placeholder="E-mail" id="Mail" required>
+                    <label for="Mail" style="padding-left: 20px;">E-mail</label>
+                </div>
+                <div class="input-box form-floating">
+                    <input class="form-control" type="password" placeholder="Password" id="pWord" required>
+                    <label for="pWord" style="padding-left: 20px";>Password</label>
+                </div>
+                <div class="input-box form-floating">
+                    <input class="form-control" type="password" placeholder="Password" id="pWordR" required>
+                    <label for="pWordR" style="padding-left: 20px;">Repeat password</label>
+                </div>
+                <button class="btn-regt btn" type="submit">Create account</button>
+                
+                <div>
+                    <p class="text-center mt-3">Already have an account?
+                        <a class="login-a" href="login.html">Login</a>
+                    </p>
+                </div>
+                <a href="index.html">Clique aqui para ir para a página Inicial</a>
+                <br>
+                <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
+                <br>
+                <a href="login.html">Clique aqui para ir para a página de Login</a>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
     </body> 
 </html>

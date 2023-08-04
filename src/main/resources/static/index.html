@@ -3,66 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>CriptoWeb</title>
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- toast -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Toast -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Fonte Exo 2 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-    <body>
-        <div id="app" class="container">
-            <header class="d-flex justify-content-between">
-                <a class="fw-bold fs-2 text-decoration-none text-black p-t text-center"href="#">CryptoWeb</a>
-                <a href="#" class="fw-bold fs-6 text-decoration-none text-black p-t text-center">Perfil</a>
-            </header>
-            <div class="mt-3 text-center">
-                <h2>Top 100 Criptos</h2>
-            </div>
-            <div class="card mt-3">
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Rank</th>
-                            <th>Symbol</th>
-                            <th>Supply</th>
-                            <th>Max Supply</th>
-                            <th>24hr Volume USD</th>
-                            <th>Price</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="coin in coins" :key="coin.id">
-                            <td>{{ coin.name }}</td>
-                            <td>{{ coin.rank }}</td>
-                            <td>{{ coin.symbol }}</td>
-                            <td>{{ formatDecimal(coin.supply) }}</td>
-                            <td>{{ formatDecimal(coin.maxSupply) }}</td>
-                            <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
-                            <td>{{ formatDecimal(coin.priceUsd) }}</td>
-                            <td> <button style="border: 0; background: rgb(255 255 255/.4)">+</button> </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    
-                    <a href="login.html">Clique aqui para ir para a página de Login</a>
-                    <br>
-                    <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
-                    <br>
-                    <a href="perfil.html">Clique aqui para ir para a página Do Perfil"</a>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;300;600;700&display=swap" rel="stylesheet">
 
-                </div>
-                <!-- Precisa para o toast -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <!-- Para requests -->
-                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-                <script src="https://unpkg.com/vue@3"></script>
-                <script src="vueApp.js"></script>
-                
-    </body>
+    <!-- CSS do Projeto -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icone -->
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+    
+</head>
+<body>
+    <div id="app" class="container">
+        <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
+            <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html">
+                <img style="filter: drop-shadow(-3px 3px 3px #000);" class="logoPixel" src="assets/pixelArtLogo.png" alt="CriptoWeb">
+                <p style="font-family: 'Exo 2', sans-serif; transform: translateY(-2px); filter: drop-shadow(-1px 5px 3px #000);" class="m-0">CryptoWeb</p>
+            </a>
+            <a class="profileBtn d-block align-items-center" href="perfil.html">
+                <i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i>
+            </a>
+        </header>
+        
+        <div class="traded text-center text-white mb-5">
+            <h2 class="fw-bold">Cryptocoins List</h2>
+        </div>
+        <div style="backdrop-filter: blur(4px);" class="card container w-100 glass p-0 ">
+            <div class="card-body container p-0">
+                <table class="table table-hover container table-striped-columns m-0">
+                    <thead class="bg-transparent">
+                    <tr>
+                        <th>Rank</th>
+                        <th style="width: 14%;">Name</th>
+                        <th>Symbol</th>
+                        <th>Supply</th>
+                        <th>Max Supply</th>
+                        <th>24hr Volume USD</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="coin in coins" :key="coin.id">
+                        <td style="text-align: center; padding-right: 5px;">{{ coin.rank }}</td>
+                        <td>{{ coin.name }}</td>
+                        <td>{{ coin.symbol }}</td>
+                        <td>{{ formatDecimal(coin.supply) }}</td>
+                        <td>{{ formatDecimal(coin.maxSupply) }}</td>
+                        <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
+                        <td>{{ formatDecimal(coin.priceUsd) }}</td>
+                        <td><button style="border: 0; background: rgb(255 255 255/.4)" class="w-100 h-100">+</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <a href="login.html">Clique aqui para ir para a página de Login</a>
+        <br>
+        <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
+        <br>
+        <a href="perfil.html">Clique aqui para ir para a página Do Perfil</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="vueApp.js"></script>
+</body>
 </html>

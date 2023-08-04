@@ -2,25 +2,80 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>CriptoWeb</title>
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- toast -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>CriptoWeb | Profile</title>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icone -->
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+
 </head>
-    <body>
-        <div id="app" class="container">
-            <header class="d-flex justify-content-between">
-                <a class="fw-bold fs-2 text-decoration-none text-black p-t text-center"href="#">CryptoWeb</a>
-                <a href="#" class="fw-bold fs-6 text-decoration-none text-black p-t text-center">Perfil</a>
-            </header>
-        <a href="index.html">Clique aqui para ir para a página Inicial</a>
-        <br>
-        <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
-        <br>
-        <a href="login.html">Clique aqui para ir para a página de Login"</a>
-    </body> 
+<body class="flex-column align-content-center">
+    <div class="container card-header mb-auto">
+        <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
+            <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html"><img class="logoPixel opacity-50" src="assets/pixelArtLogo.png" alt="CriptoWeb"><p class="m-0">CryptoWeb</p></a>
+            <a class="profileBtn d-block align-items-center" href="perfil.html"><i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i></i></a>
+        </header>
+    </div>
+    <div class="container p-0 mb-auto">
+        <form action="" class="wrapper d-flex justify-content-between p-5 form w-100 userInterface align-items-center">
+            <div style="width: calc(100% - 3em);" class="input-box d-flex flex-column align-content-center h-auto p-3">
+                <label for="Mail">E-mail</label>
+                <input type="email" name="password" id="Mail" disabled>
+            </div>
+            <div style="width: calc(100% - 3em);" class="input-box d-flex flex-column align-content-center h-auto p-3">
+                <label for="pWord">Password</label>
+                <input type="password" name="password" id="pWord">
+            </div>
+            
+            <button type="submit" class="btn">Change the password</button>
+        </form>
+    </div>
+    <div class="card container w-100 glass p-0">
+        <div class="card-body container p-0">
+            <table class="table table-hover container table-striped-columns m-0">
+                <thead class="bg-transparent">
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <th>Symbol</th>
+                    <th>Supply</th>
+                    <th>Max Supply</th>
+                    <th>24hr Volume USD</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="coin in coins" :key="coin.id">
+                    <td>{{ coin.name }}</td>
+                    <td>{{ coin.rank }}</td>
+                    <td>{{ coin.symbol }}</td>
+                    <td>{{ formatDecimal(coin.supply) }}</td>
+                    <td>{{ formatDecimal(coin.maxSupply) }}</td>
+                    <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
+                    <td>{{ formatDecimal(coin.priceUsd) }}</td>
+                    <td><button style="border: 0; background: rgb(255 255 255/.4)" class="w-100 h-100">+</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="index.html">Clique aqui para ir para a página Inicial</a>
+    <br>
+    <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
+    <br>
+    <a href="login.html">Clique aqui para ir para a página de Login</a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="vueApp.js"></script>
+</body> 
 </html>
