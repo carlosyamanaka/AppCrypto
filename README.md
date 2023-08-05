@@ -9,10 +9,10 @@ Sistema de autenticação implementado com Spring Security e JWT Tokens para gar
 <br><br>
 ## Tecnologias Utilizadas :computer:
 <div>
-      <strong>Banco de Dados:</strong><br>
-      <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"><br>
       <strong>Backend:</strong><br>
       <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><br>
+      <strong>Banco de Dados:</strong><br>
+      <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"><br>
       <strong>Frontend:</strong> <br>
       <img src="https://img.shields.io/badge/Vue%20js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"><br>
       <strong>Layout:</strong> <br>
