@@ -11,17 +11,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Fonte Exo 2 -->
+    <!-- Fonte vt323 pixelada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;300;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- Fonte dotgothic pixelada 2-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap" rel="stylesheet">
+    <!-- Fonte Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 
     <!-- CSS do Projeto -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Icone -->
-    
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
@@ -29,24 +36,26 @@
 </head>
     <body class="indexeperfil">
         <div id="app" class="container">
-            <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
-                <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html">
-                    <img style="filter: drop-shadow(-3px 3px 3px #000);" class="logoPixel" src="assets/pixelArtLogo.png" alt="CriptoWeb">
-                    <p style="font-family: 'Exo 2', sans-serif; transform: translateY(-2px); filter: drop-shadow(-1px 5px 3px #000);" class="m-0">CryptoWeb</p>
-                </a>
-                <a class="profileBtn d-block align-items-center" href="perfil.html">
-                    <i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i>
-                </a>
-            </header>
-            
-            <div class="traded text-center text-white mb-5">
-                <h2 class="fw-bold">Cryptocoins List</h2>
+            <div> <!--id="header-style"-->
+                <header class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop">
+                    <a class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center" href="index.html">
+                        <img class="logoPixel" src="assets/pixelArtLogo.png" alt="CriptoWeb">
+                        <p class="logo-style">CryptoWeb</p>
+                    </a>
+                    <a class="profileBtn d-block align-items-center" href="perfil.html">
+                        <i class='bx bxs-user-circle bx-tada-hover mt-auto' style="color: #fff; font-size: 3em;"></i>
+                    </a>
+                </header>
+            </div>
+
+            <div class="crypto-list">
+                <h2 class="pixel-font">Cryptocoins List</h2>
             </div>
             <div style="backdrop-filter: blur(4px);" class="card container glass p-0">
                 <table class="table table-hover table-active container table-striped-columns">
                     <thead class="bg-transparent">
                     <tr class="text-justify">
-                        <th >Rank</th>
+                        <th style="padding-left: 10;">Rank</th>
                         <th style="width: auto;">Name</th>
                         <th>Symbol</th>
                         <th style="width: 14%;">Supply</th>
@@ -58,7 +67,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="coin in coins" :key="coin.id">
-                        <td style="text-align: center; padding-right: 5px;">{{ coin.rank }}</td>
+                        <td style="padding-left: 15px;">{{ coin.rank }}</td>
                         <td>{{ coin.name }}</td>
                         <td>{{ coin.symbol }}</td>
                         <td style="width: 14%;">{{ formatDecimal(coin.supply) }}</td>
