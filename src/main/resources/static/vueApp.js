@@ -31,8 +31,20 @@ const mainContainer = {
         },
         
         formatDolar(value) {
-            return value.toLocaleString('en-US', {style: 'currency', currency:'USD'})
-        }
+            if (value < 10) {
+                return Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    maximumFractionDigits: 2,
+                }).format(value);
+            }
+            return Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }).format(value);
+        },
 
         showAllCoins() {
             this.coins = []; // Limpa o array coins, para garantir que ele esteja vazio antes de preenchê-lo novamente.
@@ -60,7 +72,9 @@ const mainContainer = {
                 })
         },
 
-        
+        registerUser(){
+            
+        }
 
         
     }
