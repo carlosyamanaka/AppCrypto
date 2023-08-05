@@ -24,11 +24,15 @@ const mainContainer = {
         formatDecimal(value) {
             if (value === null) {
                 return "Undefined";
-            } else if(value<10){
+            } else if (value < 10) {
                 return parseFloat(value).toFixed(2);
             }
-            return parseFloat(value).toFixed(0);
+            return parseFloat(value).toLocaleString(undefined, {maximumFractionDigits: 0}); 
         },
+        
+        formatDolar(value) {
+            return value.toLocaleString('en-US', {style: 'currency', currency:'USD'})
+        }
 
         showAllCoins() {
             this.coins = []; // Limpa o array coins, para garantir que ele esteja vazio antes de preenchê-lo novamente.
@@ -55,6 +59,10 @@ const mainContainer = {
                     toastr.error('Error');
                 })
         },
+
+        
+
+        
     }
 }
 
