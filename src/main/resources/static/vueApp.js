@@ -23,9 +23,11 @@ const mainContainer = {
 
         formatDecimal(value) {
             if (value === null) {
-                return "Not defined";
+                return "Undefined";
+            } else if(value<10){
+                return parseFloat(value).toFixed(2);
             }
-            return parseFloat(value).toFixed(4);
+            return parseFloat(value).toFixed(0);
         },
 
         showAllCoins() {
