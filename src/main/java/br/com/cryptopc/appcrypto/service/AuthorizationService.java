@@ -1,18 +1,17 @@
 package br.com.cryptopc.appcrypto.service;
 
-import br.com.cryptopc.appcrypto.repository.UserRepository;
+import br.com.cryptopc.appcrypto.repository.UserIRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorizationService implements UserDetailsService {
 
     @Autowired
-    UserRepository repository;
+    UserIRepository repository;
 
 
     @Override

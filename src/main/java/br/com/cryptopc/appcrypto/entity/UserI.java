@@ -34,6 +34,13 @@ public class UserI implements UserDetails{
     //Muitas moedas se ligam a um usuario
     @ManyToOne
     private Coin coin;
+
+    public UserI(String email, String pass) {
+        this.email = email;
+        this.pass = pass;
+    }
+
+
     public void setId(Long id) {
         this.id = id;
     }
