@@ -29,16 +29,16 @@
     <title>CriptoWeb | Login</title>
 </head>
     <body class="logineafins">
-        <div class="wrapper">
-            <form action="index.html">
+        <div class="wrapper" id="login">
+            <form @submit.prevent="onSubmit">
                 <h1>Login</h1>
                 <div class="input-box form-floating">
-                    <input type="email" class= "form-control" id="Mail" placeholder="name@example.com" required autofocus>
+                    <input type="email" class= "form-control" id="Mail" v-model="email" name="email" placeholder="name@example.com" required autofocus>
                     <label for="emailInput">Email address</label>
                     <i class='bx bxs-user bx-flip-horizontal' ></i> 
                 </div>
                 <div class="form-floating input-box">
-                    <input type="password" class="form-control" id="pWord" placeholder="Password" required>
+                    <input type="password" class="form-control" id="pWord" v-model="password" name="pass" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>

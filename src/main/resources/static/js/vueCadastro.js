@@ -6,15 +6,11 @@ async function registerUser(email, pass) {
   try {
     const endpoint = '/auth/register';
     const url = userUrl + endpoint;
-    console.log(url)
     const requestBody = {
         email: email,
         pass: pass,
     };
-    console.log(requestBody)
     const response = await axios.post(url, requestBody);
-    console.log(requestBody)
-    console.log(response.data);
     return response.data;
     } catch (error) {
         console.error('Error: ', error);
@@ -23,6 +19,7 @@ async function registerUser(email, pass) {
 }
 
 const mainContainer = {
+  
     data() {
       return {
         email: '',
@@ -34,7 +31,7 @@ const mainContainer = {
       async onSubmit() {
         try {
           if (this.password !== this.repeatPassword) {
-            console.log("The password is wrong!!!!!!!!!!");
+            toastr.error('As senhas não coincidem');
             return;
           }
   
@@ -42,6 +39,7 @@ const mainContainer = {
         } catch (error) {
           console.error('Error: ', error);
         }
+        window.location.href = 'login.html';
       },
       registerUser: registerUser,
     },
