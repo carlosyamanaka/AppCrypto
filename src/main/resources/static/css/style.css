@@ -1,0 +1,333 @@
+/* Inicialização inicial do layout para nao ocorrer inesperados*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-color: purple;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+/* Background do login e registro */
+.logineafins {
+    position: relative;
+}
+.logineafins::before {
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../assets/fundo3.png");
+    filter: brightness(1.5);
+    z-index: -1;
+}
+/* Background do index e perfil */
+.indexeperfil {
+    position: relative;
+  }
+  
+.indexeperfil::before {
+    content: "";
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../assets/fundo3.jpg");
+    filter: brightness(1.5);
+    opacity: 0.5;
+    z-index: -1;
+}
+/* Fonte pixelada VT usada no Cryptocoins List*/
+.pixel-font {
+    font-family: 'VT323', monospace;
+    font-size: 72px;
+    opacity: 0.55;
+    letter-spacing: 2px;
+    color: white;
+}
+/* Formatação usada no cryptocoins List */
+.crypto-list {
+    margin-top: 20vh;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.wrapper {
+    width:416px;
+    background: rgba(156, 4, 156, 0.068);
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rbga(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1{
+    font-family: 'VT323', monospace;
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    margin: 30px 0;
+}
+
+
+.input-box input{
+    width: 100%;
+    height:100%;
+    background: transparent;
+    border: none;
+    outline:none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+    color: #fff;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+  
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+
+}
+
+.remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.register-link p a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+form .form-floating label {
+    padding-left: 24px;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border:none;
+    outline: none;
+    border-radius: 40 px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.btn-regt{
+    width: calc(50% - 40px);
+    display: inline-block;
+}
+
+.login-a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.login-a:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.form-floating .form-control:not(:placeholder-shown) + label {
+    color: white; /* Cor do texto do rótulo flutuante */
+}
+
+.form-floating .form-control:focus { 
+    z-index: 2;
+    background-color: transparent;
+    color: white;
+}
+
+.form-floating label{
+    background-color: transparent;
+}
+
+.form-floating>.form-control-plaintext~label,.form-floating>.form-control:focus~label,.form-floating>.form-control:not(:placeholder-shown)~label,.form-floating>.form-select~label{
+    color: white;
+    transform:scale(.85) translateY(-.5rem) translateX(.15rem)
+}
+
+.form-floating>.form-control-plaintext~label::after,.form-floating>.form-control:focus~label::after,.form-floating>.form-control:not(:placeholder-shown)~label::after,.form-floating>.form-select~label::after{ 
+    background-color: transparent;
+}
+    
+.form-floating>.form-control:not(:-moz-placeholder-shown)~label::after{
+    background-color: transparent;
+}
+
+/* Gambiarra pro autofill nao ficar branco */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.userInterface{
+    height: 30vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 48px;
+    width: 100%;
+    align-items: center;
+}
+
+.table>:not(caption)>*>* {
+    background-color: transparent;
+    border-bottom-width: 0;
+    color: #fff;
+}
+
+.logo {
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.logoPixel{
+    filter: drop-shadow(-3px 3px 3px #000);
+    width: 2em;
+    margin-right: 15px;
+    opacity: 65%;
+}
+
+.logo-style {
+    font-family: 'DotGothic16', sans-serif;
+    transform: translateY(-2px);
+    filter: drop-shadow(-1px 1px 1px #000000a1);
+}
+
+.profileBtn{
+    display: block;
+    margin: auto 0;
+}
+
+
+
+.btn-add {
+    width: 1;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    font-weight: 600;
+    color: #fff;
+    padding: 25%;
+}
+
+/* Estilo para o botão */
+.full-width-button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    font-size: 2em;
+    color: #fff;
+}
+  
+/* Estilo para a célula */
+.td-button {
+    width: 3vw;
+    height: 1vh;
+    padding: 0;
+}
+
+/* Efeito de vidro para o background da tabela e do login*/
+.glass{
+    background: rgba(156, 4, 156, 0.068);
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rbga(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+}
+
+#header-style{
+    background: rgba(156, 4, 156, 0.068);
+    backdrop-filter: blur(10px);
+    padding: 0.5vh 3.5vh 0.5vh 3.5vh;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rbga(0, 0, 0, .2);
+    color: #fff;
+    opacity: 0.6;
+    border-radius: 0 0 10px 10px;
+}
+
+.input-box #Mail {
+    padding-left: 21.4px;
+}
+
+.input-box #password {
+    padding-left: 21.4px;
+}
+
+.input-box #pWord {
+    padding-left: 21.4px;
+}
+
+.input-box #pWordR {
+    padding-left: 21.4px;
+}
+
+.text-in-forgotpass {
+    padding: 20px 0 5px 0;
+    font-size: 14px;
+}
