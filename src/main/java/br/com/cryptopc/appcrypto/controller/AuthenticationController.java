@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("auth")
 public class AuthenticationController {
     @Autowired
@@ -25,7 +26,6 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
 
-    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid UserIAuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.pass());
@@ -36,7 +36,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserILoginResponseDTO(token));
     }
 
-    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid UserIRegisterDTO data){
         if(this.repository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
