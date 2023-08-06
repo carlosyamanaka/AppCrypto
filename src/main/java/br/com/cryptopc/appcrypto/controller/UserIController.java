@@ -17,11 +17,13 @@ public class UserIController {
         this.userIRepository = userIRepository;
     }
 
+    @CrossOrigin
     @GetMapping("{id_user}")
     public ResponseEntity getById(@PathVariable Long id_user){
         return new ResponseEntity<>(userIRepository.findById(id_user), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping()
     public ResponseEntity post(@RequestBody UserI userI){
         try{
@@ -30,7 +32,7 @@ public class UserIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @CrossOrigin
     @DeleteMapping("{id_user}")
     public ResponseEntity delete(@PathVariable Long id_user){
         try{
