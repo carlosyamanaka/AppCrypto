@@ -10,11 +10,11 @@ async function registerUser(email, pass) {
         email: email,
         pass: pass,
     };
-    const response = await axios.post(url, requestBody);
+    const response = await axios.post(url, requestBody).then(window.location.href = 'login.html')
     return response.data;
     } catch (error) {
-        console.error('Error: ', error);
-        throw error;
+      toastr.error('Invalid credentials. Please check your email and password.', 'Authentication Error');
+      throw error;
     }
 }
 

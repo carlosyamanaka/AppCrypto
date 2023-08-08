@@ -2,9 +2,9 @@ package br.com.cryptopc.appcrypto.controller;
 
 
 import br.com.cryptopc.appcrypto.entity.UserI;
-import br.com.cryptopc.appcrypto.entity.UserIAuthenticationDTO;
-import br.com.cryptopc.appcrypto.entity.UserILoginResponseDTO;
-import br.com.cryptopc.appcrypto.entity.UserIRegisterDTO;
+import br.com.cryptopc.appcrypto.DTO.UserIAuthenticationDTO;
+import br.com.cryptopc.appcrypto.DTO.UserILoginResponseDTO;
+import br.com.cryptopc.appcrypto.DTO.UserIRegisterDTO;
 import br.com.cryptopc.appcrypto.infra.security.TokenService;
 import br.com.cryptopc.appcrypto.repository.UserIRepository;
 import jakarta.validation.Valid;
@@ -47,4 +47,7 @@ public class AuthenticationController {
 
         return ResponseEntity.ok().build();
     }
+
+
 }
+

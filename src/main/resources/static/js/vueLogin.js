@@ -10,32 +10,38 @@ async function loginUser(email, pass) {
         email: email,
         pass: pass,
     };
-    const response = await axios.post(url, requestBody);
+    const response = await axios.post(url, requestBody).then(response => {
+      const token = response.data.token;
+      console.log(token)
+      document.cookie = `authToken=${token}; max-age=${30 * 24 * 60 * 60}; path=/; secure=true;`;
+      window.location.href = 'index.html';
+    })
     return response.data;
     } catch (error) {
-        console.error('Error: ', error);
-        throw error;
+       throw error;
     }
 }
 
 const mainContainer = {
   
   data() {
+    
     return {
       email: '',
       password: '',
     };
   },
   methods: {
+  
     async onSubmit() {
       try {
-        const response = await this.loginUser(this.email, this.password);
+        await this.loginUser(this.email, this.password);
       } catch (error) {
-        console.error('Error: ', error);
+        toastr.error('Invalid credentials. Please check your email and password.', 'Authentication Error');
         return;
       }
     },
-    registerUser: registerUser,
+    loginUser: loginUser,
   },
 };
   

@@ -1,11 +1,18 @@
 package br.com.cryptopc.appcrypto.controller;
 
+import br.com.cryptopc.appcrypto.DTO.UserIProfileDTO;
+import br.com.cryptopc.appcrypto.entity.Coin;
 import br.com.cryptopc.appcrypto.entity.UserI;
 import br.com.cryptopc.appcrypto.repository.UserIRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -41,4 +48,42 @@ public class UserIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserIProfileDTO> getProfileDetails(Authentication authentication) {
+        if (authentication != null && authentication.getPrincipal() instanceof UserI) {
+            UserI user = (UserI) authentication.getPrincipal();
+            UserIProfileDTO profileDTO = new UserIProfileDTO(user.getEmail());
+            return ResponseEntity.ok(profileDTO);
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+    @PatchMapping("/{id_user}")
+    public ResponseEntity<String> addCoin(@PathVariable Long id_user, @RequestBody String coins) {
+        try {
+            UserI user = userIRepository.findById(id_user).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+            Coin coin = null;
+            coin.setId(coins);
+            user.getCoins().add(coin);
+            userIRepository.save(user);
+            return ResponseEntity.ok("Coin Added");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
+        }
+    }
+
+
+    @GetMapping("/{id_user}/coins")
+    public ResponseEntity<Coin> getCoinsUser(@PathVariable Long id_user){
+        try{
+        UserI userI = userIRepository.findById(id_user).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+        List <Coin> coins = userI.getCoins();
+        return  ResponseEntity.ok((Coin) coins);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,9 +32,12 @@ public class UserI implements UserDetails{
     private String role;
 
     //@JoinColumn é um column pra chave estrangeira
-    //Muitas moedas se ligam a um usuario
-    @ManyToOne
-    private Coin coin;
+    //Muitas moedas se ligam a um usuario    
+    @ManyToMany
+    @JoinTable(name="user_has_coins", joinColumns=
+    {@JoinColumn(name="user_id")}, inverseJoinColumns=
+      {@JoinColumn(name="coin_id")})
+    private List<Coin> coins;
 
     public UserI(String email, String pass) {
         this.email = email;
