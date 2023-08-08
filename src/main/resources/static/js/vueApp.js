@@ -1,7 +1,19 @@
 const { createApp } = Vue;
 
 const baseUrl = "https://api.coincap.io/v2/assets";
-const userUrl = "http://localhost:8080/user/";
+const userUrl = "http://localhost:8080/";
+
+async function getUsuarioAtual() {
+  try {
+    const endpoint = 'user/profile';
+    const url = userUrl + endpoint;
+    await axios.get(url).then(response => {
+      console.log(response.data);
+    })
+    } catch (error) {
+       throw error;
+    }
+}
 
 const mainContainer = {
   data() {
@@ -16,6 +28,7 @@ const mainContainer = {
   },
   mounted() {
     this.showAllCoins();
+    this.getUsuarioAtual();
   },
 
   methods: {
@@ -75,8 +88,17 @@ const mainContainer = {
         });
     },
 
+    getUsuarioAtual: getUsuarioAtual,
+
     registerUser() {},
-  },
+
+    saveId(coinId){
+      console.log(coinId);
+    }
+
+
+
+ },
 };
 
 createApp(mainContainer).mount("#app");
