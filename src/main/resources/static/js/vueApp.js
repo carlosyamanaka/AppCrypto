@@ -8,7 +8,6 @@ async function getUsuarioAtual() {
     const endpoint = "/user/profile";
     const url = userUrl + endpoint;
     const response = await axios.get(url);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -19,11 +18,6 @@ const mainContainer = {
   data() {
     return {
       coins: [],
-      DataUserAddedCoin: {
-        name: "",
-        pass: "",
-        coin: "",
-      },
     };
   },
   mounted() {
@@ -63,9 +57,13 @@ const mainContainer = {
     async addCoinToList(coinId) {
       try {
         const user = await this.getUsuarioAtual();
-        const endpoint = `/user/${user}`;
+        const endpoint = `/user/addMoeda`;
+        const requestBody = {
+          email: user,
+          coin: coinId,
+        };
         const urlfinal = userUrl + endpoint;
-        await axios.patch(urlfinal, coinId);
+        await axios.patch(urlfinal, requestBody);
         toastr.success("Added!!");
       } catch (error) {
         toastr.error("Error");

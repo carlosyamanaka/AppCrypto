@@ -42,98 +42,96 @@
       href="/assets/icon/favicon-16x16.png"
     />
   </head>
-  <body class="flex-column align-content-center indexeperfil">
-    <div class="container card-header mb-auto">
-      <header
-        class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop"
-      >
-        <a
-          class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center"
-          href="index.html"
-          ><img
-            class="logoPixel opacity-50"
-            src="assets/pixelArtLogo.png"
-            alt="CriptoWeb"
-          />
-          <p class="m-0">CryptoWeb</p></a
+  <body class="indexeperfil">
+    <div id="perfil">
+      <div class="container card-header mb-auto">
+        <header
+          class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop"
         >
-        <a class="profileBtn d-block align-items-center" href="perfil.html"
-          ><i
-            class="bx bxs-user-circle bx-tada-hover mt-auto"
-            style="color: #fff; font-size: 3em"
-          ></i
-        ></a>
-      </header>
-    </div>
-    <div class="container p-0 mb-auto">
-      <form action="" class="wrapper userInterface">
-        <div
-          style="width: calc(100% - 3em)"
-          class="input-box d-flex flex-column align-content-center h-auto p-3"
+          <a
+            class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center"
+            href="index.html"
+            ><img
+              class="logoPixel opacity-50"
+              src="assets/pixelArtLogo.png"
+              alt="CriptoWeb"
+            />
+            <p class="m-0">CryptoWeb</p></a
+          >
+          <a class="profileBtn d-block align-items-center" href="perfil.html"
+            ><i
+              class="bx bxs-user-circle bx-tada-hover mt-auto"
+              style="color: #fff; font-size: 3em"
+            ></i
+          ></a>
+        </header>
+      </div>
+      <div class="container p-0 mb-auto">
+        <form action="" class="wrapper userInterface">
+          <div
+            style="width: calc(100% - 3em)"
+            class="input-box d-flex flex-column align-content-center h-auto p-3"
+          >
+            <label for="Mail">E-mail</label>
+            <input type="email" name="password" id="Mail" placeholder="{{email}}" />
+          </div>
+          <div
+            style="width: calc(100% - 3em)"
+            class="input-box d-flex flex-column align-content-center h-auto p-3"
+          >
+            <label for="pWord">Password</label>
+            <input type="password" name="password" id="pWord" />
+          </div>
+  
+          <button type="submit" class="btn">Change the password</button>
+        </form>
+      </div>
+      <div style="backdrop-filter: blur(4px)" class="card container glass p-0">
+        <table
+          class="table table-hover table-active container table-striped-columns"
         >
-          <label for="Mail">E-mail</label>
-          <input type="email" name="password" id="Mail" disabled />
-        </div>
-        <div
-          style="width: calc(100% - 3em)"
-          class="input-box d-flex flex-column align-content-center h-auto p-3"
-        >
-          <label for="pWord">Password</label>
-          <input type="password" name="password" id="pWord" />
-        </div>
-
-        <button type="submit" class="btn">Change the password</button>
-      </form>
-    </div>
-    <div class="card container w-100 glass p-0">
-      <div class="card-body container p-0">
-        <table class="table table-hover container table-striped-columns m-0">
           <thead class="bg-transparent">
-            <tr>
-              <th>Name</th>
-              <th>Rank</th>
+            <tr class="text-justify">
+              <th style="padding-left: 10">Rank</th>
+              <th style="width: auto">Name</th>
               <th>Symbol</th>
-              <th>Supply</th>
-              <th>Max Supply</th>
+              <th style="width: 14%">Supply</th>
+              <th style="width: 14%">Max Supply</th>
               <th>24hr Volume USD</th>
               <th>Price</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="coin in coins" :key="coin.id">
+            <tr v-for="coin in userCoins" :key="coin.id">
+              <td style="padding-left: 15px">{{ coin.rank }}</td>
               <td>{{ coin.name }}</td>
-              <td>{{ coin.rank }}</td>
               <td>{{ coin.symbol }}</td>
-              <td>{{ formatDecimal(coin.supply) }}</td>
-              <td>{{ formatDecimal(coin.maxSupply) }}</td>
+              <td style="width: 14%">{{ formatDecimal(coin.supply) }}</td>
+              <td style="width: 14%">{{ formatDecimal(coin.maxSupply) }}</td>
               <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
-              <td>{{ formatDecimal(coin.priceUsd) }}</td>
-              <td>
-                <button
-                  style="border: 0; background: rgb(255 255 255/0.4)"
-                  class="w-100 h-100"
-                >
-                  +
-                </button>
+              <td>{{ formatDolar(coin.priceUsd) }}</td>
+              <td class="td-button p-0">
+                <button class="full-width-button" @click="removeCoinFromList(coin.id)">-</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <a href="index.html">Clique aqui para ir para a página Inicial</a>
+      <br />
+      <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
+      <br />
+      <a href="login.html">Clique aqui para ir para a página de Login</a>  
     </div>
-    <a href="index.html">Clique aqui para ir para a página Inicial</a>
-    <br />
-    <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
-    <br />
-    <a href="login.html">Clique aqui para ir para a página de Login</a>
-
     <!-- Scripts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-    <script src="vueApp.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="js/vuePerfil.js"></script>
   </body>
 </html>
