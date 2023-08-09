@@ -2,24 +2,43 @@ const { createApp } = Vue;
 
 const userUrl = "http://localhost:8080";
 
+async function getUsuarioAtual() {
+  try {
+    const endpoint = '/user/profile';
+    const url = userUrl + endpoint;
+    await axios.get(url).then(response => {
+      console.log(response.data);
+    })
+    } catch (error) {
+       throw error;
+    }
+}
+
+const setAuthToken = (token) => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
+};
+
 async function loginUser(email, pass) {
   try {
     const endpoint = '/auth/login';
     const url = userUrl + endpoint;
     const requestBody = {
-        email: email,
-        pass: pass,
+      email: email,
+      pass: pass,
     };
-    const response = await axios.post(url, requestBody).then(response => {
-      const token = response.data.token;
-      console.log(token)
-      document.cookie = `authToken=${token}; max-age=${30 * 24 * 60 * 60}; path=/; secure=true;`;
-      window.location.href = 'index.html';
-    })
+    const response = await axios.post(url, requestBody);
+    const token = response.data.token;
+    document.cookie = `auth_token=${token}; max-age=${30 * 24 * 60 * 60}; path=/; secure=true;`;
+    setAuthToken(token);
+    window.location.href = 'index.html';
     return response.data;
-    } catch (error) {
-       throw error;
-    }
+  } catch (error) {
+    throw error;
+  }
 }
 
 const mainContainer = {
@@ -41,6 +60,7 @@ const mainContainer = {
         return;
       }
     },
+    getUsuarioAtual: getUsuarioAtual,
     loginUser: loginUser,
   },
 };

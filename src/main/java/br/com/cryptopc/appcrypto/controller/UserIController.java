@@ -10,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -48,29 +52,32 @@ public class UserIController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @GetMapping("/profile")
-    public ResponseEntity<UserIProfileDTO> getProfileDetails(Authentication authentication) {
-        if (authentication != null && authentication.getPrincipal() instanceof UserI) {
-            UserI user = (UserI) authentication.getPrincipal();
-            UserIProfileDTO profileDTO = new UserIProfileDTO(user.getEmail());
-            return ResponseEntity.ok(profileDTO);
+    public ResponseEntity<String> getUserProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            return ResponseEntity.ok(username);
+        } else {
+            return ResponseEntity.ofNullable("User is not authenticated.");
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+
     @PatchMapping("/{id_user}")
-    public ResponseEntity<String> addCoin(@PathVariable Long id_user, @RequestBody String coins) {
+    public ResponseEntity<String> addCoin(@PathVariable String id_user, @RequestBody String coinId) {
         try {
-            UserI user = userIRepository.findById(id_user).orElseThrow(() -> new EntityNotFoundException("User not found!"));
-            Coin coin = null;
-            coin.setId(coins);
-            user.getCoins().add(coin);
-            userIRepository.save(user);
+            UserI userI = userIRepository.findUserIByEmail(id_user);
+            Coin coin = new Coin();
+            coin.setId(coinId);
+            userI.getCoins().add(coin);
+            userIRepository.save(userI);
             return ResponseEntity.ok("Coin Added");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
         }
-    }
+    }    
+    
 
 
     @GetMapping("/{id_user}/coins")
