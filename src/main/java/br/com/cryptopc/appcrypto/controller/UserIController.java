@@ -1,6 +1,7 @@
 package br.com.cryptopc.appcrypto.controller;
 
 import br.com.cryptopc.appcrypto.DTO.UserCoinDTO;
+import br.com.cryptopc.appcrypto.DTO.UserIDataDTO;
 import br.com.cryptopc.appcrypto.DTO.UserIProfileDTO;
 import br.com.cryptopc.appcrypto.entity.Coin;
 import br.com.cryptopc.appcrypto.entity.UserI;
@@ -105,6 +106,17 @@ public class UserIController {
             return ResponseEntity.ok(coins);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @PatchMapping("/password")
+    public ResponseEntity<String>updatePassword(@RequestBody UserIDataDTO userDataDTO) {
+        try {
+            UserI userI = userIRepository.findUserIByEmail(userDataDTO.email());
+                userI.setPass(userDataDTO.pass());
+                userIRepository.save(userI);
+                return ResponseEntity.ok("Coin Added");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
         }
     }
 }

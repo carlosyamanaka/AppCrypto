@@ -32,7 +32,8 @@ const mainContainer = {
     return {
       email: '',
       coins: [],
-      userCoins: []
+      userCoins: [],
+      pWord: '',
     };
   },
 
@@ -116,9 +117,22 @@ const mainContainer = {
       }
     },
 
-    updateUserPassaword() {
-      // codigo a fazer
-    }
+      async updateUserPassword() {
+        try {
+          const user = await this.getUsuarioAtual();
+          const endpoint = `/user/password`;
+          const requestBody = {
+            email: user,
+            pass: this.pWord,
+          };
+          const urlfinal = userUrl + endpoint;
+          console.log(pass);
+          await axios.patch(urlfinal, requestBody);
+          toastr.success("Updated!!!!!!!!");
+        } catch (error) {
+          toastr.error("Error");
+        }
+      },  
   }
 };
 

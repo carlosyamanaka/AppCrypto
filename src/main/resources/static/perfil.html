@@ -67,24 +67,24 @@
         </header>
       </div>
       <div class="container p-0 mb-auto">
-        <form action="" class="wrapper userInterface">
+        <form onsubmit="updateUserPassword()" class="wrapper userInterface">
           <div
             style="width: calc(100% - 3em)"
             class="input-box d-flex flex-column align-content-center h-auto p-3"
           >
             <label for="Mail">E-mail</label>
-            <input type="email" name="password" id="Mail" placeholder="{{email}}" />
+            <input type="email" name="email" id="Mail" :value="email" readonly />
           </div>
           <div
             style="width: calc(100% - 3em)"
             class="input-box d-flex flex-column align-content-center h-auto p-3"
           >
             <label for="pWord">Password</label>
-            <input type="password" name="password" id="pWord" />
+            <input type="password" name="password" id="pWord" v-model="pWord" />
           </div>
-  
-          <button type="submit" class="btn">Change the password</button>
-        </form>
+        
+          <button class="btn" type="submit">Change the password</button>
+        </form>        
       </div>
       <div style="backdrop-filter: blur(4px)" class="card container glass p-0">
         <table

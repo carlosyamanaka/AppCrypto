@@ -4,7 +4,7 @@ package br.com.cryptopc.appcrypto.controller;
 import br.com.cryptopc.appcrypto.entity.UserI;
 import br.com.cryptopc.appcrypto.DTO.UserIAuthenticationDTO;
 import br.com.cryptopc.appcrypto.DTO.UserILoginResponseDTO;
-import br.com.cryptopc.appcrypto.DTO.UserIRegisterDTO;
+import br.com.cryptopc.appcrypto.DTO.UserIDataDTO;
 import br.com.cryptopc.appcrypto.infra.security.TokenService;
 import br.com.cryptopc.appcrypto.repository.UserIRepository;
 import jakarta.validation.Valid;
@@ -37,7 +37,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid UserIRegisterDTO data){
+    public ResponseEntity register(@RequestBody @Valid UserIDataDTO data){
         if(this.repository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.pass());
