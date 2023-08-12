@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="/src/main/resources/static/css/style.css" />
 
     <!-- Icone -->
-
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -41,42 +40,54 @@
       sizes="16x16"
       href="/assets/icon/favicon-16x16.png"
     />
+     <!-- Fonte dotgothic pixelada 2-->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap"
+       rel="stylesheet"
+     />
   </head>
   <body class="indexeperfil">
-    <div id="perfil">
-      <div class="container card-header mb-auto">
+    <div id="perfil" class="container">
+      <div>
+        <!--id="header-style"-->
         <header
           class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop"
         >
           <a
             class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center"
             href="index.html"
-            ><img
-              class="logoPixel opacity-50"
+          >
+            <img
+              class="logoPixel"
               src="assets/pixelArtLogo.png"
               alt="CriptoWeb"
             />
-            <p class="m-0">CryptoWeb</p></a
-          >
-          <a class="profileBtn d-block align-items-center" href="perfil.html"
-            ><i
+            <p class="logo-style">CryptoWeb</p>
+          </a>
+          <a class="profileBtn d-block align-items-center" href="perfil.html">
+            <i
               class="bx bxs-user-circle bx-tada-hover mt-auto"
               style="color: #fff; font-size: 3em"
-            ></i
-          ></a>
+            ></i>
+          </a>
         </header>
       </div>
-      <div class="container p-0 mb-auto">
-        <form onsubmit="updateUserPassword()" class="wrapper userInterface">
+
+      <div class="container mb-auto">
+        <div class="crypto-list">
+          <h2 class="pixel-font">Profile page</h2>
+        </div>
+        
+        <form @onsubmit="updateUserPassword" class="wrapper userInterface">
           <div
-            style="width: calc(100% - 3em)"
-            class="input-box d-flex flex-column align-content-center h-auto p-3"
+            class="input-box"
           >
             <label for="Mail">E-mail</label>
             <input type="email" name="email" id="Mail" :value="email" readonly />
           </div>
           <div
-            style="width: calc(100% - 3em)"
             class="input-box d-flex flex-column align-content-center h-auto p-3"
           >
             <label for="pWord">Password</label>
@@ -86,7 +97,8 @@
           <button class="btn" type="submit">Change the password</button>
         </form>        
       </div>
-      <div style="backdrop-filter: blur(4px)" class="card container glass p-0">
+
+      <div style="backdrop-filter: blur(4px)" class="card container glass">
         <table
           class="table table-hover table-active container table-striped-columns"
         >
@@ -111,27 +123,20 @@
               <td style="width: 14%">{{ formatDecimal(coin.maxSupply) }}</td>
               <td>{{ formatDecimal(coin.volumeUsd24Hr) }}</td>
               <td>{{ formatDolar(coin.priceUsd) }}</td>
-              <td class="td-button p-0">
+              <td class="td-button">
                 <button class="full-width-button" @click="removeCoinFromList(coin.id)">-</button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <a href="index.html">Clique aqui para ir para a página Inicial</a>
-      <br />
-      <a href="cadastro.html">Clique aqui para ir para a página de Cadastro</a>
-      <br />
-      <a href="login.html">Clique aqui para ir para a página de Login</a>  
-    </div>
-    <!-- Scripts -->
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="js/vuePerfil.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">    
+    <script src="/src/main/resources/static/js/vuePerfil.js"></script>
   </body>
 </html>
