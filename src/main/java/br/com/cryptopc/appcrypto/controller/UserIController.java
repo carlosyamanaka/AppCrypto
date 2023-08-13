@@ -2,12 +2,9 @@ package br.com.cryptopc.appcrypto.controller;
 
 import br.com.cryptopc.appcrypto.DTO.UserCoinDTO;
 import br.com.cryptopc.appcrypto.DTO.UserIDataDTO;
-import br.com.cryptopc.appcrypto.DTO.UserIProfileDTO;
 import br.com.cryptopc.appcrypto.entity.Coin;
 import br.com.cryptopc.appcrypto.entity.UserI;
-import br.com.cryptopc.appcrypto.repository.CoinRepository;
 import br.com.cryptopc.appcrypto.repository.UserIRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -115,7 +112,7 @@ public class UserIController {
             UserI userI = userIRepository.findUserIByEmail(userDataDTO.email());
                 userI.setPass(new BCryptPasswordEncoder().encode(userDataDTO.pass()));
                 userIRepository.save(userI);
-                return ResponseEntity.ok("Coin Added");
+                return ResponseEntity.ok("Password Updated");
         } catch (Exception e) {
             return ResponseEntity.status(403).body("Error");
         }

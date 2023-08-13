@@ -1,10 +1,7 @@
 package br.com.cryptopc.appcrypto.controller;
 
-import br.com.cryptopc.appcrypto.DTO.UserCoinDTO;
 import br.com.cryptopc.appcrypto.entity.Coin;
-import br.com.cryptopc.appcrypto.entity.UserI;
 import br.com.cryptopc.appcrypto.repository.CoinRepository;
-import br.com.cryptopc.appcrypto.repository.UserIRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
