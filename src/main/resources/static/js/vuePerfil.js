@@ -117,22 +117,22 @@ const mainContainer = {
       }
     },
 
-      async updateUserPassword() {
-        try {
-          const user = await this.getUsuarioAtual();
-          const endpoint = `/user/password`;
-          const requestBody = {
-            email: user,
-            pass: this.pWord,
-          };
-          const urlfinal = userUrl + endpoint;
-          console.log(pass);
-          await axios.patch(urlfinal, requestBody);
-          toastr.success("Updated!!!!!!!!");
-        } catch (error) {
-          toastr.error("Error");
-        }
-      },  
+    async updateUserPassword() {
+      try {
+        const user = await getUsuarioAtual();
+        const endpoint = `/user/password`;
+        const requestBody = {
+          email: user,
+          pass: this.pWord,
+        };
+        const urlfinal = userUrl + endpoint;
+        await axios.patch(urlfinal, requestBody);
+        toastr.success("Updated!!!!!!!!");
+      } catch (error) {
+        toastr.error("Error");
+        throw error;
+      }
+    },      
   }
 };
 

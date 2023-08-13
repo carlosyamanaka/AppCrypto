@@ -80,7 +80,7 @@
           <h2 class="pixel-font">Profile page</h2>
         </div>
         
-        <form @onsubmit="updateUserPassword" class="wrapper userInterface">
+        <div class="wrapper userInterface" >
           <div
             class="input-box"
           >
@@ -91,11 +91,11 @@
             class="input-box"
           >
             <label for="pWord">Password</label>
-            <input type="password" name="password" id="pWord" v-model="pWord" />
+            <input name="password" id="pWord" v-model="pWord" />
           </div>
         
-          <button class="btn" type="submit">Change the password</button>
-        </form>        
+          <button class="btn" @click="updateUserPassword">Change the password</button>
+        </div>        
       </div>
 
       <div style="backdrop-filter: blur(4px)" class="card container glass">
@@ -138,5 +138,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">    
     <script src="/src/main/resources/static/js/vuePerfil.js"></script>
+    <script src="js/vuePerfil.js"></script>
   </body>
 </html>
