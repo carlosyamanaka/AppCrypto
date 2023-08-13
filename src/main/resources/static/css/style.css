@@ -39,6 +39,12 @@ body {
     position: relative;
   }
   
+.teste{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
 .indexeperfil::before {
     content: "";
     position: fixed;
@@ -54,6 +60,7 @@ body {
     opacity: 0.5;
     z-index: -1;
 }
+
 /* Fonte pixelada VT usada no Cryptocoins List*/
 .pixel-font {
     font-family: 'VT323', monospace;
@@ -65,7 +72,7 @@ body {
 /* Formatação usada no cryptocoins List */
 .crypto-list {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3px;
 }
 .wrapper {
     width:416px;
@@ -300,16 +307,16 @@ select:-webkit-autofill {
     border-radius: 10px;
 }
 
-#header-style{
-    background: rgba(156, 4, 156, 0.068);
-    backdrop-filter: blur(10px);
-    padding: 0.5vh 3.5vh 0.5vh 3.5vh;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rbga(0, 0, 0, .2);
-    color: #fff;
-    opacity: 0.6;
-    border-radius: 0 0 10px 10px;
-}
+.header-style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+  }
+     
 
 .input-box #Mail {
     padding-left: 21.4px;
@@ -331,3 +338,4 @@ select:-webkit-autofill {
     padding: 20px 0 5px 0;
     font-size: 14px;
 }
+

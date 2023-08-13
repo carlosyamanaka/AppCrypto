@@ -126,14 +126,17 @@ const mainContainer = {
             pass: this.pWord,
           };
           const urlfinal = userUrl + endpoint;
-          console.log(pass);
+          console.log(this.pWord);
           await axios.patch(urlfinal, requestBody);
           toastr.success("Updated!!!!!!!!");
         } catch (error) {
           toastr.error("Error");
         }
       },  
-  }
+
+    }
 };
+
+
 
 createApp(mainContainer).mount("#perfil");

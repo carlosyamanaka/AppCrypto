@@ -70,9 +70,8 @@
   <body class="indexeperfil">
     <div id="app" class="container">
       <div>
-        <!--id="header-style"-->
         <header
-          class="d-flex justify-content-between header-index align-content-center text-center pt-3 h-auto mb-5 mt-3 drop"
+          class="header-style"
         >
           <a
             class="logoFull fw-bold fs-2 text-decoration-none text-white p-t logo d-flex align-items-center"
@@ -85,7 +84,7 @@
             />
             <p class="logo-style">CryptoWeb</p>
           </a>
-          <a class="profileBtn d-block align-items-center" href="perfil.html">
+          <a @click="verifylogged" class="profileBtn d-block align-items-center">
             <i
               class="bx bxs-user-circle bx-tada-hover mt-auto"
               style="color: #fff; font-size: 3em"
