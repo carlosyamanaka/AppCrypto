@@ -17,13 +17,14 @@ async function getUsuarioAtual() {
 const mainContainer = {
   data() {
     return {
+      email: '',
       coins: [],
     };
   },
-  mounted() {
+  async mounted() {
     this.showAllCoins();
     this.getAuthToken();
-    this.getUsuarioAtual();
+    this.email = await getUsuarioAtual();
   },
   methods: {
     formatDecimal(value) {
@@ -69,7 +70,6 @@ const mainContainer = {
         toastr.error("Error");
       }
     },    
-    getUsuarioAtual,
     getAuthToken() {
       const cookies = document.cookie.split("; ");
       for (const cookie of cookies) {
@@ -84,6 +84,14 @@ const mainContainer = {
         }
       }
       return null;
+    },
+
+    verifylogged() {
+      if (this.email=="anonymousUser") {
+        window.location.href = "login.html";
+      } else {
+        window.location.href = "perfil.html";
+      }
     },
   },
 };
